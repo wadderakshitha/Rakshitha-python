@@ -1,0 +1,30 @@
+def prime_factorization_sum(arr, num):
+  """Calculates the sum of numbers in arr at indices of prime factors of num.
+
+  Args:
+    arr: A list of integers.
+    num: A positive integer.
+
+  Returns:
+    The sum of numbers in arr at indices of prime factors of num.
+  """
+
+  prime_factors = []
+  while num > 1:
+    for i in range(2, int(num**0.5) + 1):
+      if num % i == 0:
+        prime_factors.append(i)
+        num //= i
+        break
+    else:
+      prime_factors.append(num)
+      break
+
+  return sum(arr[i] for i in prime_factors if i < len(arr))
+
+# Example usage:
+n=int(input())
+arr = list(map(int,input().split()))
+num = int(input())
+result = prime_factorization_sum(arr, num)
+print(result)  # Output: 9 (arr[2]
